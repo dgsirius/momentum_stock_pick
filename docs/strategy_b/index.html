@@ -120,9 +120,25 @@
       gap: 16px;
       margin-top: 18px;
     }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
     .panel {
       padding: 18px;
       overflow: hidden;
+    }
+    .panel h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .panel p.meta {
+      color: var(--muted);
+      margin: 8px 0 14px;
+      font-size: 13px;
+      line-height: 1.7;
     }
     .panel p {
       color: var(--muted);
@@ -142,6 +158,22 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      border-bottom: 1px solid #ece5da;
+      text-align: left;
+      padding: 9px 8px;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      background: rgba(155,95,45,0.04);
     }
     .charts img {
       width: 100%;
@@ -163,7 +195,7 @@
       .sidebar {
         position: static;
       }
-      .cards, .charts {
+      .cards, .grid, .charts {
         grid-template-columns: 1fr;
       }
     }
@@ -191,16 +223,16 @@
         </section>
         <section class="cards">
           <div class='card'><div class='label'>公开版本</div><div class='value'>策略 B</div></div>
-<div class='card'><div class='label'>最新信号日</div><div class='value'>2026-04-15</div></div>
+<div class='card'><div class='label'>最新信号日</div><div class='value'>2026-04-16</div></div>
 <div class='card'><div class='label'>下个交易日</div><div class='value'>待更新</div></div>
-<div class='card'><div class='label'>策略净值</div><div class='value'>1.0025</div></div>
-<div class='card'><div class='label'>SPY净值</div><div class='value'>1.0228</div></div>
-<div class='card'><div class='label'>CAGR</div><div class='value'>0.89%</div></div>
-<div class='card'><div class='label'>Sharpe</div><div class='value'>0.28</div></div>
+<div class='card'><div class='label'>策略净值</div><div class='value'>1.0371</div></div>
+<div class='card'><div class='label'>SPY净值</div><div class='value'>1.0318</div></div>
+<div class='card'><div class='label'>CAGR</div><div class='value'>13.62%</div></div>
+<div class='card'><div class='label'>Sharpe</div><div class='value'>0.51</div></div>
 <div class='card'><div class='label'>最大回撤</div><div class='value'>-30.60%</div></div>
 <div class='card'><div class='label'>当前持仓数</div><div class='value'>11</div></div>
 <div class='card'><div class='label'>计划持仓数</div><div class='value'>10</div></div>
-<div class='card'><div class='label'>待新增标的数</div><div class='value'>4</div></div>
+<div class='card'><div class='label'>待新增标的数</div><div class='value'>5</div></div>
 <div class='card'><div class='label'>允许新开仓</div><div class='value'>是</div></div>
         </section>
         <section class="stack">
@@ -211,6 +243,36 @@
 <li>图表反映历史结果快照，页面本身不包含本地目录、原始 CSV、JSON 或脚本路径。</li>
 <li>如需进一步交流策略框架，请通过单独材料说明，不在公开页面中直接暴露实现细节。</li>
             </ul>
+          </div>
+        </section>
+        <section class="grid">
+          <div class="panel">
+            <h2>当前持有 / 计划持有</h2>
+            <p class="meta">仅展示计划持有名单与动作，不展示排序因子或分数字段。</p>
+            <table><thead><tr><th>rank</th><th>ticker</th><th>name</th><th>action</th></tr></thead><tbody><tr><td>1</td><td>US.XNDU</td><td>哈纳杜量子技术</td><td>buy</td></tr>
+<tr><td>2</td><td>US.AEHR</td><td>Aehr Test Systems</td><td>keep</td></tr>
+<tr><td>3</td><td>US.YSS</td><td>York Space Systems</td><td>keep</td></tr>
+<tr><td>4</td><td>US.SGML</td><td>Sigma Lithium</td><td>keep</td></tr>
+<tr><td>5</td><td>US.FLY</td><td>Firefly Aerospace</td><td>buy</td></tr>
+<tr><td>6</td><td>US.LWLG</td><td>Lightwave Logic</td><td>keep</td></tr>
+<tr><td>7</td><td>US.IRDM</td><td>铱星通讯</td><td>buy</td></tr>
+<tr><td>8</td><td>US.AXTI</td><td>AXT Inc</td><td>buy</td></tr>
+<tr><td>9</td><td>US.INFQ</td><td>Infleqtion</td><td>buy</td></tr>
+<tr><td>10</td><td>US.CRDO</td><td>Credo Technology</td><td>keep</td></tr></tbody></table>
+          </div>
+          <div class="panel">
+            <h2>当前实际持仓</h2>
+            <p class="meta">仅展示当前持仓标的名称，不展示股数、权重或市值信息。</p>
+            <table><thead><tr><th>ticker</th><th>name</th></tr></thead><tbody><tr><td>US.AEHR</td><td>Aehr Test Systems</td></tr>
+<tr><td>US.SGML</td><td>Sigma Lithium</td></tr>
+<tr><td>US.MRVL</td><td>迈威尔科技</td></tr>
+<tr><td>US.LWLG</td><td>Lightwave Logic</td></tr>
+<tr><td>US.INTC</td><td>英特尔</td></tr>
+<tr><td>US.YSS</td><td>York Space Systems</td></tr>
+<tr><td>US.TCGL</td><td>TechCreate Group</td></tr>
+<tr><td>US.VECO</td><td>维易科精密仪器</td></tr>
+<tr><td>US.CRWV</td><td>CoreWeave</td></tr>
+<tr><td>US.BE</td><td>Bloom Energy</td></tr></tbody></table>
           </div>
         </section>
         <section class="charts">
@@ -232,7 +294,7 @@
           </div>
         </section>
         <div class="footer">
-          <div>公开页更新时间对应信号日：2026-04-15</div>
+          <div>公开页更新时间对应信号日：2026-04-16</div>
           <div>本页不包含本地路径、参数标签、原始持仓文件或候选打分文件。</div>
         </div>
       </main>

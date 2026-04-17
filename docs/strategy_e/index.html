@@ -120,9 +120,25 @@
       gap: 16px;
       margin-top: 18px;
     }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
     .panel {
       padding: 18px;
       overflow: hidden;
+    }
+    .panel h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .panel p.meta {
+      color: var(--muted);
+      margin: 8px 0 14px;
+      font-size: 13px;
+      line-height: 1.7;
     }
     .panel p {
       color: var(--muted);
@@ -142,6 +158,22 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      border-bottom: 1px solid #ece5da;
+      text-align: left;
+      padding: 9px 8px;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      background: rgba(155,95,45,0.04);
     }
     .charts img {
       width: 100%;
@@ -163,7 +195,7 @@
       .sidebar {
         position: static;
       }
-      .cards, .charts {
+      .cards, .grid, .charts {
         grid-template-columns: 1fr;
       }
     }
@@ -191,16 +223,16 @@
         </section>
         <section class="cards">
           <div class='card'><div class='label'>公开版本</div><div class='value'>策略 E</div></div>
-<div class='card'><div class='label'>最新信号日</div><div class='value'>2026-04-15</div></div>
+<div class='card'><div class='label'>最新信号日</div><div class='value'>2026-04-16</div></div>
 <div class='card'><div class='label'>下个交易日</div><div class='value'>待更新</div></div>
-<div class='card'><div class='label'>策略净值</div><div class='value'>1.1184</div></div>
-<div class='card'><div class='label'>SPY净值</div><div class='value'>1.0228</div></div>
-<div class='card'><div class='label'>CAGR</div><div class='value'>48.74%</div></div>
-<div class='card'><div class='label'>Sharpe</div><div class='value'>0.99</div></div>
+<div class='card'><div class='label'>策略净值</div><div class='value'>1.1651</div></div>
+<div class='card'><div class='label'>SPY净值</div><div class='value'>1.0318</div></div>
+<div class='card'><div class='label'>CAGR</div><div class='value'>70.72%</div></div>
+<div class='card'><div class='label'>Sharpe</div><div class='value'>1.23</div></div>
 <div class='card'><div class='label'>最大回撤</div><div class='value'>-26.19%</div></div>
 <div class='card'><div class='label'>当前持仓数</div><div class='value'>8</div></div>
 <div class='card'><div class='label'>计划持仓数</div><div class='value'>8</div></div>
-<div class='card'><div class='label'>待新增标的数</div><div class='value'>2</div></div>
+<div class='card'><div class='label'>待新增标的数</div><div class='value'>1</div></div>
 <div class='card'><div class='label'>允许新开仓</div><div class='value'>是</div></div>
         </section>
         <section class="stack">
@@ -211,6 +243,32 @@
 <li>图表反映历史结果快照，页面本身不包含本地目录、原始 CSV、JSON 或脚本路径。</li>
 <li>如需进一步交流策略框架，请通过单独材料说明，不在公开页面中直接暴露实现细节。</li>
             </ul>
+          </div>
+        </section>
+        <section class="grid">
+          <div class="panel">
+            <h2>当前持有 / 计划持有</h2>
+            <p class="meta">仅展示计划持有名单与动作，不展示排序因子或分数字段。</p>
+            <table><thead><tr><th>rank</th><th>ticker</th><th>name</th><th>action</th></tr></thead><tbody><tr><td>1</td><td>US.CIEN</td><td>Ciena</td><td>keep</td></tr>
+<tr><td>2</td><td>US.TSEM</td><td>Tower半导体</td><td>keep</td></tr>
+<tr><td>3</td><td>US.SNDK</td><td>闪迪</td><td>keep</td></tr>
+<tr><td>4</td><td>US.LITE</td><td>Lumentum</td><td>keep</td></tr>
+<tr><td>5</td><td>US.PL</td><td>Planet Labs PBC</td><td>keep</td></tr>
+<tr><td>6</td><td>US.WDC</td><td>西部数据</td><td>keep</td></tr>
+<tr><td>7</td><td>US.COHR</td><td>Coherent</td><td>keep</td></tr>
+<tr><td>8</td><td>US.STX</td><td>希捷科技</td><td>buy</td></tr></tbody></table>
+          </div>
+          <div class="panel">
+            <h2>当前实际持仓</h2>
+            <p class="meta">仅展示当前持仓标的名称，不展示股数、权重或市值信息。</p>
+            <table><thead><tr><th>ticker</th><th>name</th></tr></thead><tbody><tr><td>US.CIEN</td><td>Ciena</td></tr>
+<tr><td>US.TSEM</td><td>Tower半导体</td></tr>
+<tr><td>US.SNDK</td><td>闪迪</td></tr>
+<tr><td>US.COHR</td><td>Coherent</td></tr>
+<tr><td>US.WDC</td><td>西部数据</td></tr>
+<tr><td>US.PL</td><td>Planet Labs PBC</td></tr>
+<tr><td>US.LITE</td><td>Lumentum</td></tr>
+<tr><td>US.AAOI</td><td>Applied Optoelectronics</td></tr></tbody></table>
           </div>
         </section>
         <section class="charts">
@@ -232,7 +290,7 @@
           </div>
         </section>
         <div class="footer">
-          <div>公开页更新时间对应信号日：2026-04-15</div>
+          <div>公开页更新时间对应信号日：2026-04-16</div>
           <div>本页不包含本地路径、参数标签、原始持仓文件或候选打分文件。</div>
         </div>
       </main>
