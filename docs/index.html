@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Strategy Snapshot - Public</title>
+  <style>
+    :root {
+      --bg: #f3efe7;
+      --panel: #fffdf9;
+      --ink: #1f2a2e;
+      --muted: #6a7577;
+      --line: #ddd2c4;
+      --accent: #0f5c73;
+      --font: "Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15,92,115,0.10), transparent 34%),
+        linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
+    }
+    .wrap {
+      width: min(1120px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 36px 0 48px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: 0.02em;
+    }
+    .subtitle {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 760px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: 0 12px 30px rgba(31, 42, 46, 0.05);
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .value {
+      margin-top: 8px;
+      font-size: 24px;
+      font-weight: 650;
+    }
+    .meta {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>US Strategy Snapshot</h1>
+    <div class="subtitle">这是对外分享版目录页。页面只展示汇总绩效、净值曲线与回撤，不展示策略参数、候选池、因子明细、持仓明细或本地路径。</div>
+    <section class="cards">
+      <a class='card' href='./strategy_a/index.html'><div class='label'>公开看板</div><div class='value'>策略 A</div><div class='meta'>仅展示汇总绩效与净值曲线</div></a>
+<a class='card' href='./strategy_b/index.html'><div class='label'>公开看板</div><div class='value'>策略 B</div><div class='meta'>仅展示汇总绩效与净值曲线</div></a>
+<a class='card' href='./strategy_c/index.html'><div class='label'>公开看板</div><div class='value'>策略 C</div><div class='meta'>仅展示汇总绩效与净值曲线</div></a>
+<a class='card' href='./strategy_d/index.html'><div class='label'>公开看板</div><div class='value'>策略 D</div><div class='meta'>仅展示汇总绩效与净值曲线</div></a>
+<a class='card' href='./strategy_e/index.html'><div class='label'>公开看板</div><div class='value'>策略 E</div><div class='meta'>仅展示汇总绩效与净值曲线</div></a>
+    </section>
+  </div>
+</body>
+</html>
