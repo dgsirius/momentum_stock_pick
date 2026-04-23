@@ -77,6 +77,35 @@
       justify-content: space-between;
       gap: 16px;
     }
+    .toolbar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      min-width: 190px;
+    }
+    .sync-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, var(--accent-2), #1a7f52);
+      color: white;
+      font-size: 14px;
+      font-weight: 650;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(15, 92, 115, 0.18);
+    }
+    .sync-btn[disabled] {
+      opacity: 0.68;
+      cursor: not-allowed;
+    }
+    .sync-status {
+      max-width: 240px;
+      text-align: right;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
     h1, h2 { margin: 0; }
     h1 {
       font-size: 34px;
@@ -195,6 +224,15 @@
       .sidebar {
         position: static;
       }
+      .hero {
+        flex-direction: column;
+      }
+      .toolbar {
+        align-items: flex-start;
+      }
+      .sync-status {
+        text-align: left;
+      }
       .cards, .grid, .charts {
         grid-template-columns: 1fr;
       }
@@ -208,10 +246,6 @@
         <div class="sidebar-title">公开版本目录</div>
         <div class="nav-links">
           <a class='nav-link active' href='./index.html'>策略 A</a>
-<a class='nav-link' href='../strategy_b/index.html'>策略 B</a>
-<a class='nav-link' href='../strategy_c/index.html'>策略 C</a>
-<a class='nav-link' href='../strategy_d/index.html'>策略 D</a>
-<a class='nav-link' href='../strategy_e/index.html'>策略 E</a>
         </div>
       </aside>
       <main>
@@ -220,82 +254,178 @@
             <h1>US Strategy Snapshot</h1>
             <div class="subtitle">策略 A 的最新绩效快照与当前组合概览。</div>
           </div>
+          <div class="toolbar">
+            <button id="syncOriginalButton" class="sync-btn" type="button">同步原版数据</button>
+            <div id="syncStatus" class="sync-status">从原版看板读取最新已发布数据。</div>
+          </div>
         </section>
         <section class="cards">
-          <div class='card'><div class='label'>公开版本</div><div class='value'>策略 A</div></div>
-<div class='card'><div class='label'>最新信号日</div><div class='value'>2026-04-16</div></div>
-<div class='card'><div class='label'>下个交易日</div><div class='value'>待更新</div></div>
-<div class='card'><div class='label'>策略净值</div><div class='value'>1.4492</div></div>
-<div class='card'><div class='label'>SPY净值</div><div class='value'>1.0318</div></div>
-<div class='card'><div class='label'>CAGR</div><div class='value'>266.42%</div></div>
-<div class='card'><div class='label'>Sharpe</div><div class='value'>3.24</div></div>
-<div class='card'><div class='label'>最大回撤</div><div class='value'>-13.91%</div></div>
-<div class='card'><div class='label'>当前持仓数</div><div class='value'>11</div></div>
-<div class='card'><div class='label'>计划持仓数</div><div class='value'>10</div></div>
-<div class='card'><div class='label'>待新增标的数</div><div class='value'>3</div></div>
-<div class='card'><div class='label'>允许新开仓</div><div class='value'>是</div></div>
+          <div class='card'><div class='label'>公开版本</div><div class='value' data-card-value='public_name'>策略 A</div></div>
+<div class='card'><div class='label'>最新信号日</div><div class='value' data-card-value='signal_date'>2026-04-22</div></div>
+<div class='card'><div class='label'>下个交易日</div><div class='value' data-card-value='next_trade_date'>待更新</div></div>
+<div class='card'><div class='label'>策略净值</div><div class='value' data-card-value='strategy_nav'>1.5731</div></div>
+<div class='card'><div class='label'>SPY净值</div><div class='value' data-card-value='benchmark_nav'>1.0458</div></div>
+<div class='card'><div class='label'>CAGR</div><div class='value' data-card-value='cagr'>349.12%</div></div>
+<div class='card'><div class='label'>Sharpe</div><div class='value' data-card-value='sharpe'>3.84</div></div>
+<div class='card'><div class='label'>最大回撤</div><div class='value' data-card-value='max_drawdown'>-14.19%</div></div>
+<div class='card'><div class='label'>当前持仓数</div><div class='value' data-card-value='current_holding_count'>10</div></div>
+<div class='card'><div class='label'>计划持仓数</div><div class='value' data-card-value='planned_holding_count'>10</div></div>
+<div class='card'><div class='label'>待新增标的数</div><div class='value' data-card-value='buy_count'>3</div></div>
+<div class='card'><div class='label'>允许新开仓</div><div class='value' data-card-value='allow_new_buys'>是</div></div>
         </section>
         <section class="grid">
           <div class="panel">
             <h2>当前持有 / 计划持有</h2>
             <p class="meta">仅展示计划持有名单与动作，不展示排序因子或分数字段。</p>
-            <table><thead><tr><th>rank</th><th>ticker</th><th>name</th><th>action</th></tr></thead><tbody><tr><td>1</td><td>US.PL</td><td>Planet Labs PBC</td><td>buy</td></tr>
-<tr><td>2</td><td>US.CRDO</td><td>Credo Technology</td><td>keep</td></tr>
-<tr><td>3</td><td>US.INTC</td><td>英特尔</td><td>keep</td></tr>
-<tr><td>4</td><td>US.TSEM</td><td>Tower半导体</td><td>keep</td></tr>
-<tr><td>5</td><td>US.CRWV</td><td>CoreWeave</td><td>keep</td></tr>
-<tr><td>6</td><td>US.CLS</td><td>天弘科技</td><td>keep</td></tr>
-<tr><td>7</td><td>US.AMD</td><td>美国超微公司</td><td>keep</td></tr>
-<tr><td>8</td><td>US.IONQ</td><td>IonQ Inc</td><td>buy</td></tr>
-<tr><td>9</td><td>US.SITM</td><td>SiTime</td><td>buy</td></tr>
-<tr><td>10</td><td>US.ALAB</td><td>Astera Labs</td><td>keep</td></tr></tbody></table>
+            <div id="plannedTable"><table><thead><tr><th>rank</th><th>ticker</th><th>name</th><th>action</th></tr></thead><tbody><tr><td>1</td><td>US.CRDO</td><td>Credo Technology</td><td>keep</td></tr>
+<tr><td>2</td><td>US.MRVL</td><td>迈威尔科技</td><td>keep</td></tr>
+<tr><td>3</td><td>US.ALAB</td><td>Astera Labs</td><td>keep</td></tr>
+<tr><td>4</td><td>US.BE</td><td>Bloom Energy</td><td>keep</td></tr>
+<tr><td>5</td><td>US.SITM</td><td>SiTime</td><td>keep</td></tr>
+<tr><td>6</td><td>US.AMD</td><td>美国超微公司</td><td>keep</td></tr>
+<tr><td>7</td><td>US.CRWV</td><td>CoreWeave</td><td>buy</td></tr>
+<tr><td>8</td><td>US.ARM</td><td>Arm Holdings</td><td>buy</td></tr>
+<tr><td>9</td><td>US.IONQ</td><td>IonQ Inc</td><td>buy</td></tr>
+<tr><td>10</td><td>US.AMKR</td><td>艾马克技术</td><td>keep</td></tr></tbody></table></div>
           </div>
           <div class="panel">
             <h2>当前实际持仓</h2>
             <p class="meta">仅展示当前持仓标的名称，不展示股数、权重或市值信息。</p>
-            <table><thead><tr><th>ticker</th><th>name</th></tr></thead><tbody><tr><td>US.INTC</td><td>英特尔</td></tr>
-<tr><td>US.MRVL</td><td>迈威尔科技</td></tr>
-<tr><td>US.CLS</td><td>天弘科技</td></tr>
-<tr><td>US.CRWV</td><td>CoreWeave</td></tr>
-<tr><td>US.FN</td><td>Fabrinet</td></tr>
-<tr><td>US.BE</td><td>Bloom Energy</td></tr>
-<tr><td>US.AAOI</td><td>Applied Optoelectronics</td></tr>
+            <div id="currentTable"><table><thead><tr><th>ticker</th><th>name</th></tr></thead><tbody><tr><td>US.SITM</td><td>SiTime</td></tr>
 <tr><td>US.AMD</td><td>美国超微公司</td></tr>
-<tr><td>US.TSEM</td><td>Tower半导体</td></tr>
-<tr><td>US.ALAB</td><td>Astera Labs</td></tr></tbody></table>
+<tr><td>US.ALAB</td><td>Astera Labs</td></tr>
+<tr><td>US.AMKR</td><td>艾马克技术</td></tr>
+<tr><td>US.MRVL</td><td>迈威尔科技</td></tr>
+<tr><td>US.CRDO</td><td>Credo Technology</td></tr>
+<tr><td>US.BE</td><td>Bloom Energy</td></tr>
+<tr><td>US.ON</td><td>安森美半导体</td></tr>
+<tr><td>US.CLS</td><td>天弘科技</td></tr>
+<tr><td>US.MPWR</td><td>Monolithic Power Systems</td></tr></tbody></table></div>
           </div>
         </section>
         <section class="charts">
           <div class="panel">
             <h2>策略净值 vs SPY</h2>
-            <img src="charts/nav_vs_spy.png" alt="nav vs spy">
+            <img data-chart="nav_vs_spy.png" src="charts/nav_vs_spy.png" alt="nav vs spy">
           </div>
           <div class="panel">
             <h2>回撤</h2>
-            <img src="charts/drawdown.png" alt="drawdown">
+            <img data-chart="drawdown.png" src="charts/drawdown.png" alt="drawdown">
           </div>
           <div class="panel">
             <h2>Rolling 63-Day Return</h2>
-            <img src="charts/rolling_63_return.png" alt="rolling return">
+            <img data-chart="rolling_63_return.png" src="charts/rolling_63_return.png" alt="rolling return">
           </div>
           <div class="panel">
             <h2>Rolling 63-Day Excess Return</h2>
-            <img src="charts/rolling_63_excess_return.png" alt="rolling excess return">
+            <img data-chart="rolling_63_excess_return.png" src="charts/rolling_63_excess_return.png" alt="rolling excess return">
           </div>
           <div class="panel">
             <h2>盈利贡献最多的10只: 股价和买卖点</h2>
-            <img src="charts/top10_profit_trade_markers.png" alt="top10 profit trade markers">
+            <img data-chart="top10_profit_trade_markers.png" src="charts/top10_profit_trade_markers.png" alt="top10 profit trade markers">
           </div>
           <div class="panel">
             <h2>亏损贡献最多的10只: 股价和买卖点</h2>
-            <img src="charts/top10_loss_trade_markers.png" alt="top10 loss trade markers">
+            <img data-chart="top10_loss_trade_markers.png" src="charts/top10_loss_trade_markers.png" alt="top10 loss trade markers">
           </div>
         </section>
         <div class="footer">
-          <div>公开页更新时间对应信号日：2026-04-16</div>
+          <div>公开页更新时间对应信号日：<span id="footerSignalDate">2026-04-22</span></div>
         </div>
       </main>
     </div>
   </div>
+  <script>
+    (() => {
+      const ORIGINAL_BASE = "https://dgsirius.github.io/momentum_stockpick";
+      const button = document.getElementById("syncOriginalButton");
+      const status = document.getElementById("syncStatus");
+      const plannedTable = document.getElementById("plannedTable");
+      const currentTable = document.getElementById("currentTable");
+      const footerSignalDate = document.getElementById("footerSignalDate");
+
+      function setStatus(text) {
+        status.textContent = text;
+      }
+
+      function setCard(key, value) {
+        const target = document.querySelector(`[data-card-value="${key}"]`);
+        if (target) target.textContent = value;
+      }
+
+      function fmtNumber(value, digits = 4) {
+        const number = Number(value);
+        return Number.isFinite(number) ? number.toFixed(digits) : "N/A";
+      }
+
+      function fmtPercent(value) {
+        const number = Number(value);
+        return Number.isFinite(number) ? `${(number * 100).toFixed(2)}%` : "N/A";
+      }
+
+      function cell(value) {
+        return `<td>${value == null || value !== value ? "" : String(value)}</td>`;
+      }
+
+      function renderTable(rows, columns) {
+        const head = columns.map((column) => `<th>${column}</th>`).join("");
+        const body = rows.length
+          ? rows.map((row) => `<tr>${columns.map((column) => cell(row[column])).join("")}</tr>`).join("")
+          : `<tr><td colspan="${columns.length}">No data</td></tr>`;
+        return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+      }
+
+      function updateCards(summary, performance) {
+        setCard("signal_date", summary.signal_date || "N/A");
+        setCard("next_trade_date", summary.next_trade_date || "待更新");
+        setCard("strategy_nav", fmtNumber(summary.strategy_nav));
+        setCard("benchmark_nav", fmtNumber(summary.benchmark_nav));
+        setCard("cagr", fmtPercent(performance.CAGR));
+        setCard("sharpe", fmtNumber(performance["Sharpe Ratio"], 2));
+        setCard("max_drawdown", fmtPercent(performance["Max Drawdown"]));
+        setCard("current_holding_count", String(summary.current_holding_count ?? "N/A"));
+        setCard("planned_holding_count", String(summary.planned_holding_count ?? "N/A"));
+        setCard("buy_count", String(summary.buy_count ?? "N/A"));
+        setCard("allow_new_buys", summary.allow_new_buys ? "是" : "否");
+        footerSignalDate.textContent = summary.signal_date || "N/A";
+      }
+
+      function updateCharts(ts) {
+        document.querySelectorAll("img[data-chart]").forEach((image) => {
+          image.src = `${ORIGINAL_BASE}/charts/${image.dataset.chart}?ts=${ts}`;
+        });
+      }
+
+      async function syncOriginalData() {
+        const ts = Date.now();
+        button.disabled = true;
+        setStatus("正在同步原版看板数据...");
+        try {
+          const [summaryRes, plannedRes, currentRes] = await Promise.all([
+            fetch(`${ORIGINAL_BASE}/dashboard_summary.json?ts=${ts}`, { cache: "no-store" }),
+            fetch(`${ORIGINAL_BASE}/planned_holdings_top10.json?ts=${ts}`, { cache: "no-store" }),
+            fetch(`${ORIGINAL_BASE}/current_holdings.json?ts=${ts}`, { cache: "no-store" }),
+          ]);
+          if (!summaryRes.ok || !plannedRes.ok || !currentRes.ok) {
+            throw new Error("原版看板数据读取失败");
+          }
+          const summaryPayload = await summaryRes.json();
+          const plannedRows = await plannedRes.json();
+          const currentRows = await currentRes.json();
+          updateCards(summaryPayload.summary || {}, summaryPayload.performance || {});
+          plannedTable.innerHTML = renderTable((Array.isArray(plannedRows) ? plannedRows : []).slice(0, 10), ["rank", "ticker", "name", "action"]);
+          currentTable.innerHTML = renderTable((Array.isArray(currentRows) ? currentRows : []).slice(0, 10), ["ticker", "name"]);
+          updateCharts(ts);
+          setStatus(`已同步原版看板。信号日 ${(summaryPayload.summary || {}).signal_date || "N/A"}`);
+        } catch (error) {
+          setStatus(`同步失败：${error.message}`);
+        } finally {
+          button.disabled = false;
+        }
+      }
+
+      button.addEventListener("click", syncOriginalData);
+    })();
+  </script>
 </body>
 </html>
